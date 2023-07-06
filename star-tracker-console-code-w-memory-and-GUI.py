@@ -35,6 +35,7 @@ class MyWindow:
 
 
             new_pos = self.newposentry.get()
+            new_pos_to_write = new_pos
             print(new_pos)
             new_pos_clean = new_pos[1:-1]
             print(new_pos_clean)
@@ -43,6 +44,11 @@ class MyWindow:
             new_pos_x = float(last_pos[0])
             new_pos_y = float(last_pos[1])
             print(new_pos_x)
+
+
+            #write new values to csv file
+            with open("C:\\Users\\sonak\\Documents\\SVLC\\Star Tracker\\Code\\code-w-memory-transport-from-previous\positions.csv", 'a', encoding='UTF8') as f:
+                f.write(str(new_pos_to_write)+"\n")
 
             #sol for x direction and degrees
 
@@ -56,10 +62,10 @@ class MyWindow:
             pitch_degrees = abs(float(new_pos_y-old_pos_y))
 
 
-            #write new values to csv file
-            with open("C:\\Users\\sonak\\Documents\\SVLC\\Star Tracker\\Code\\code-w-memory-transport-from-previous\positions.csv", 'a', encoding='UTF8') as f:
-                f.write(f'''({new_pos_x},{new_pos_y})''')
-                f.write("\n")
+            
+
+
+
 
             if pitch_degrees > 0:
                 pitch_direction = "Up"
